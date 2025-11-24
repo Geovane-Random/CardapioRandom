@@ -42,11 +42,18 @@ Um projeto de página web elegante e interativa para exibir o menu de um restaur
 
 ### 🚀 Como Usar
 
-1.  **Executar a Página**:
-    - Basta abrir o arquivo `index.html` em qualquer navegador moderno.
+1.  **Configuração Inicial (WhatsApp)**:
+    - Na raiz do projeto, localize o arquivo `config model.js`. Este é um arquivo de modelo.
+    - Crie uma cópia deste arquivo e renomeie a cópia para `config.js`.
+    - **Nota**: O arquivo `config.js` é ignorado pelo Git (via `.gitignore`) para evitar que seu número de telefone seja exposto publicamente.
+    - Abra o seu novo arquivo `config.js` e edite a constante `WHATSAPP_PHONE_NUMBER`, substituindo o número de exemplo pelo do restaurante.
+    - **Importante**: O número deve seguir o formato internacional: `[DDI][DDD][Número]`, tudo junto, sem espaços ou símbolos. Exemplo para um número de São Paulo, Brasil: `5511912345678`.
+
+2.  **Executar a Página**:
+    - Após configurar o número de WhatsApp, abra o arquivo `index.html` em qualquer navegador moderno.
     - **Recomendação**: Para evitar possíveis erros de CORS ao carregar o arquivo `data.json` localmente, é ideal usar um servidor local. Uma forma fácil é usar a extensão **Live Server** no Visual Studio Code.
 
-2.  **Como Adicionar um Novo Prato**:
+3.  **Como Adicionar um Novo Prato**:
     - **Passo 1**: Adicione a imagem do novo prato (ex: `novo-prato.png`) dentro da pasta `assets/`.
     - **Passo 2**: Abra o arquivo `data.json`.
     - **Passo 3**: Copie um dos objetos existentes, cole no final da lista (antes do `]` final) e altere os valores para o novo prato:
