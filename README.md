@@ -1,92 +1,70 @@
-# Delizie e Dolcezze - Menu Dinâmico
+# 🍝 Delizie e Dolcezze - Cardápio Interativo
 
+Este é um projeto de um cardápio online interativo para o restaurante fictício "Delizie e Dolcezze". Desenvolvido com tecnologias web modernas, o site oferece uma experiência de usuário fluida e agradável, permitindo que os clientes explorem os pratos, montem um pedido e o enviem diretamente via WhatsApp.
 
+## ✨ Funcionalidades
 
-Um projeto de página web elegante e interativa para exibir o menu de um restaurante italiano fictício, "Delizie e Dolcezze". A página carrega dinamicamente os pratos a partir de um arquivo de dados, permite a busca em tempo real e oferece uma visualização detalhada de cada item.
+- **Carregamento Dinâmico:** O cardápio é carregado a partir de um arquivo `data.json`, facilitando a adição ou modificação de pratos sem alterar o código HTML.
+- **Busca Inteligente:** Filtre os pratos em tempo real digitando no campo de busca. A pesquisa funciona tanto pelo nome quanto pela descrição do item.
+- **Visualização Detalhada:** Clique na imagem de um prato para expandi-la em um modal, exibindo mais detalhes e uma imagem maior.
+- **Carrinho de Compras Completo:**
+  - Adicione itens ao seu pedido com um clique.
+  - Um ícone flutuante mostra a quantidade de itens no carrinho.
+  - Um modal de carrinho permite visualizar todos os itens, ajustar quantidades (`+` / `-`) ou remover produtos.
+  - O valor total do pedido é calculado e atualizado automaticamente.
+- **Integração com WhatsApp:** Ao finalizar o pedido, uma mensagem formatada com todos os itens e o valor total é gerada e aberta no WhatsApp, pronta para ser enviada.
 
----
+## 🚀 Tecnologias Utilizadas
 
-## 📜 Documentação e Tutorial
+- **HTML5:** Para a estrutura semântica do site.
+- **CSS3:** Para estilização completa, incluindo layout responsivo com Grid e Flexbox, animações e design de modais.
+- **JavaScript (ES6+):** Para toda a interatividade, incluindo:
+  - Manipulação do DOM.
+  - Requisições `fetch` para carregar dados do JSON.
+  - Lógica de busca e filtragem.
+  - Gerenciamento do estado do carrinho de compras.
+  - Geração da mensagem para a API do WhatsApp.
 
-### Funcionalidades Principais
-
-- **Renderização Dinâmica**: Os pratos são carregados a partir de um arquivo `data.json`, facilitando a adição, remoção ou edição de itens sem precisar alterar o código HTML.
-- **Busca em Tempo Real**: Um campo de busca permite filtrar os pratos por nome ou descrição instantaneamente, conforme o usuário digita.
-- **Visualização Detalhada (Modal)**: Ao clicar na imagem de um prato, um modal expande o card, mostrando mais detalhes, permitindo a leitura da descrição completa e o acesso a links externos.
-- **Design Responsivo**: A galeria de pratos se ajusta a diferentes tamanhos de tela, de desktops a celulares, utilizando CSS Grid Layout.
-
-### Tecnologias Utilizadas
-
-- **HTML5**: Para a estrutura semântica da página.
-- **CSS3**: Para estilização, layout (Flexbox e Grid) e responsividade.
-- **JavaScript (ES6+)**: Para a interatividade, manipulação do DOM, `fetch` de dados (`async/await`) e lógica de busca.
-
----
-
-### 📂 Estrutura do Projeto
+## 📂 Estrutura do Projeto
 
 ```
-/
-|-- index.html          # Estrutura principal da página
-|-- style.css           # Estilos visuais
-|-- script.js           # Lógica e interatividade
-|-- data.json           # Banco de dados dos pratos do menu
-|-- README.md           # Esta documentação
-|-- assets/             # Pasta para as imagens dos pratos
-    |-- lasanha.png
-    |-- nhoque.png
-    |-- ...
+├── assets/                 # Pasta para as imagens dos pratos
+├── config.js               # Arquivo de configuração (ex: número do WhatsApp)
+├── data.json               # Arquivo com os dados dos pratos (nome, preço, descrição, etc.)
+├── index.html              # Arquivo principal da estrutura HTML
+├── script.js               # Lógica principal da aplicação em JavaScript
+├── style.css               # Folha de estilos principal
+└── README.md               # Este arquivo
 ```
 
----
+## ⚙️ Configuração e Execução
 
-### 🚀 Como Usar
+### Pré-requisitos
 
-1.  **Configuração Inicial (WhatsApp)**:
-    - Na raiz do projeto, localize o arquivo `config model.js`. Este é um arquivo de modelo.
-    - Crie uma cópia deste arquivo e renomeie a cópia para `config.js`.
-    - **Nota**: O arquivo `config.js` é ignorado pelo Git (via `.gitignore`) para evitar que seu número de telefone seja exposto publicamente.
-    - Abra o seu novo arquivo `config.js` e edite a constante `WHATSAPP_PHONE_NUMBER`, substituindo o número de exemplo pelo do restaurante.
-    - **Importante**: O número deve seguir o formato internacional: `[DDI][DDD][Número]`, tudo junto, sem espaços ou símbolos. Exemplo para um número de São Paulo, Brasil: `5511912345678`.
+Para que a integração com o WhatsApp funcione, você precisa configurar o número de telefone.
 
-2.  **Executar a Página**:
-    - Após configurar o número de WhatsApp, abra o arquivo `index.html` em qualquer navegador moderno.
-    - **Recomendação**: Para evitar possíveis erros de CORS ao carregar o arquivo `data.json` localmente, é ideal usar um servidor local. Uma forma fácil é usar a extensão **Live Server** no Visual Studio Code.
+1.  Crie um arquivo chamado `config.js` na raiz do projeto.
+2.  Dentro deste arquivo, adicione o seguinte código, substituindo pelo número desejado:
 
-3.  **Como Adicionar um Novo Prato**:
-    - **Passo 1**: Adicione a imagem do novo prato (ex: `novo-prato.png`) dentro da pasta `assets/`.
-    - **Passo 2**: Abra o arquivo `data.json`.
-    - **Passo 3**: Copie um dos objetos existentes, cole no final da lista (antes do `]` final) e altere os valores para o novo prato:
+    ```javascript
+    // /config.js
+    export const WHATSAPP_PHONE_NUMBER = "5511999999999"; // Use o formato: código do país + DDD + número
+    ```
 
-      ```json
-      {
-          "nome": "Nome do Novo Prato",
-          "descricao": "Uma descrição deliciosa do novo prato.",
-          "ano": "Origem ou data de criação",
-          "link": "https://link-para-mais-infos.com",
-          "imagem": "assets/novo-prato.png"
-      }
-      ```
-    - **Passo 4**: Salve o arquivo e recarregue a página. O novo prato aparecerá automaticamente!
+### Executando o Projeto
 
----
+Como este projeto utiliza `fetch` para carregar o `data.json` e módulos JavaScript (`import`/`export`), ele precisa ser servido por um servidor web para funcionar corretamente devido às políticas de segurança do navegador (CORS).
 
-## ✨ Funcionalidades Futuras (Future Breaches)
+1.  **Usando a extensão Live Server (VS Code):**
+    - Instale a extensão Live Server no Visual Studio Code.
+    - Abra a pasta do projeto no VS Code.
+    - Clique com o botão direito no arquivo `index.html` e selecione "Open with Live Server".
 
-Este projeto tem uma base sólida que pode ser expandida com novas funcionalidades para transformá-lo em uma aplicação web mais completa.
+2.  **Usando Python:**
+    - Navegue até a pasta do projeto pelo terminal.
+    - Execute o comando: `python -m http.server`
+    - Abra seu navegador e acesse `http://localhost:8000`.
 
-### 🛒 Carrinho de Compras
+##  Licença
 
-- **Visão**: Implementar um sistema de carrinho de compras onde o usuário pode adicionar os pratos desejados.
-- **Como Funcionaria**:
-  1. Adicionar um botão "Adicionar ao Pedido" em cada card.
-  2. Um ícone de carrinho no cabeçalho mostraria a quantidade de itens.
-  3. Ao clicar no ícone, um painel lateral ou uma nova página mostraria os itens selecionados, permitindo ajustar quantidades e ver o subtotal.
-
-### 💬 Pedido via WhatsApp
-
-- **Visão**: Integrar o carrinho de compras com a API do WhatsApp para permitir que o cliente envie seu pedido diretamente para o número do restaurante.
-- **Como Funcionaria**:
-  1. No carrinho de compras, haveria um botão "Finalizar Pedido via WhatsApp".
-  2. Ao clicar, o JavaScript montaria uma mensagem de texto padronizada com a lista de pratos e quantidades (ex: `Olá, gostaria de pedir: 1x Lasanha, 2x Gelato.`).
-  3. O usuário seria redirecionado para o WhatsApp com essa mensagem pronta para ser enviada para o número do restaurante, agilizando o processo de pedido.
+Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
